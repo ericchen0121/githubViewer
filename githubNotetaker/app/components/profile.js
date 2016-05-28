@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, ScrollView } from 'react-native';
 var Badge = require('./badge')
+var Separator = require('./helpers/separator')
 
 var styles = StyleSheet.create({
 	container: {
@@ -44,6 +45,7 @@ class Profile extends Component{
 							<Text style={styles.rowTitle}> {this.getRowTitle(userInfo, item)}</Text>
 							<Text style={styles.rowContent}> {userInfo[item]} </Text>
 						</View>
+						<Separator />
 					</View>
 				)
 			}
@@ -55,6 +57,7 @@ class Profile extends Component{
 				<Badge userInfo={this.props.userInfo} />
 				{list}
 			</ScrollView>
+
 		)
 	}
 };
