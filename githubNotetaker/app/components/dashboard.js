@@ -20,7 +20,7 @@ class Dashboard extends Component{
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text> {this.props.userInfo.toString()} </Text>
+				<Text> {JSON.stringify(this.props.userInfo)} </Text>
 			</View>
 		)
 	}
