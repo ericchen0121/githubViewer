@@ -1,3 +1,4 @@
+// React imports
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -8,8 +9,11 @@ import {
   ActivityIndicatorIOS
 } from 'react-native';
 
+// import custom components
 var api = require('../utils/api')
+var Dashboard = require('../components/dashboard')
 
+// styles
 var styles = StyleSheet.create({
 	mainContainer: {
 		flex: 1, 
@@ -55,6 +59,7 @@ var styles = StyleSheet.create({
 
 })
 
+// define main class
 class Main extends Component {
 	constructor(props){
 		super(props)
@@ -64,24 +69,27 @@ class Main extends Component {
 			error: false
 		}
 	}
+	// username is set to what the user types
 	handleChange(event){
 		this.setState({
+			// IOS: nativeEvent grabs the text 
 			username: event.nativeEvent.text
 		})
 	}
 	handleSubmit(event){
 		//update our indicatorIOS spinner
 		this.setState({
-			isLoading: true
+			isLoading: true // set loading spinner to be visible
 		})
 		api.getBio(this.state.username)
 			.then((res) => {
+				// github returns not found if no username
 				if(res.message === 'Not Found'){
 					this.setState({
 						error: 'User not found', 
-						isLoading: false;
+						isLoading: false
 					})
-				} else {
+				} else { // go to a new route, and reset state
 					// push a new route onto the stack, if user is found
 					this.props.navigator.push({
 						// if user doesn't have a name, select an option
@@ -97,9 +105,10 @@ class Main extends Component {
 					})
 				}
 			}
+		)
+	};
 		//fetch data from github
 		//reroute to the next passing that github information
-	}
 	render() {
 		return (
 			<View style={styles.mainContainer}>
