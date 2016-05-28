@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Image, TouchableHighlight } from 'react-native';
 var Profile = require('./profile')
-
+var api = require('../utils/api')
+var Repos = require('./repos')
 var styles = StyleSheet.create({
 	container: {
 		marginTop: 65, 
@@ -40,12 +41,23 @@ class Dashboard extends Component{
 		this.props.navigator.push({
 			// if user doesn't have a name, select an option
 			component: Profile,
-			title: 'Profile Page',
+			title: 'Profile',
 			passProps: {userInfo: this.props.userInfo}
 		});
 	}
 	goToRepos(){
-		console.log('go to repos')
+		var repos = api.getRepos(this.props.userInfo.login)
+			.then((res) => {
+				this.props.navigator.push({
+					// if user doesn't have a name, select an option
+					component: Repos,
+					title: 'Repos',
+					passProps: {
+						userInfo: this.props.userInfo,
+						repos: res
+					}
+				});
+			})	
 	}
 	goToNotes(){
 		console.log('go to notes')
