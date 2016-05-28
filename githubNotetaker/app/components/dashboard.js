@@ -40,10 +40,10 @@ class Dashboard extends Component{
 		console.log('go to profile')
 	}
 	goToRepos(){
-		console.log('go to profile')
+		console.log('go to repos')
 	}
 	goToNotes(){
-		console.log('go to profile')
+		console.log('go to notes')
 	}
 	render() {
 		return (
