@@ -29,6 +29,9 @@ var styles = StyleSheet.create({
 })
 
 class Badge extends Component{
+	propTypes = {
+		userInfo: React.PropTypes.object.isRequired
+	}
 	render(){
 		return (
 			<View style={styles.container}>
