@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, ScrollView, TouchableHighlight } from 'react-native';
 var Badge = require('./badge');
 var Separator = require('./helpers/separator');
-
+var Web_View = require('./helpers/webview.js')
 var styles = StyleSheet.create({
 	container: {
 		flex: 1
@@ -35,7 +35,11 @@ class Repos extends Component{
 
 	}
 	openPage(url){
-		console.log('the url is', url);
+		this.props.navigator.push({
+			component: Web_View, 
+			title: 'Web', 
+			passProps: {url}
+		})
 	}
 	render(){
 		var repos = this.props.repos;
