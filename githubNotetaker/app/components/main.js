@@ -95,6 +95,7 @@ class Main extends Component {
 						// if user doesn't have a name, select an option
 						title: res.name || "Select an Option", 
 						component: Dashboard,
+						// pass props to dashboard component
 						passProps: {userInfo: res}
 					});
 					//when you go back, reset the state to be clear
